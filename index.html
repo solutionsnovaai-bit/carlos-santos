@@ -7,20 +7,20 @@
   <meta name="description" content="Corretor de imóveis parceiro das maiores construtoras do Brasil. CRECI 245180-F. Fale direto no WhatsApp."/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
   <style>
     /* ── VARIÁVEIS ── */
     :root {
-      --blue:       #1B3A6B;
-      --blue-dark:  #0D2240;
-      --blue-mid:   #2755A0;
-      --blue-light: #4A7CC9;
+      --blue:       #063D2E;
+      --blue-dark:  #031F17;
+      --blue-mid:   #0A6B4E;
+      --blue-light: #12A070;
       --pearl:      #F6F5F2;
       --white:      #FFFFFF;
       --slate:      #3D4A5C;
       --slate-lt:   #8896A8;
-      --border:     rgba(27,58,107,.1);
-      --shadow:     0 8px 32px rgba(27,58,107,.12);
+      --border:     rgba(6,61,46,.1);
+      --shadow:     0 8px 32px rgba(6,61,46,.12);
     }
 
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -28,7 +28,7 @@
     body {
       background: var(--pearl);
       color: #0F1923;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Barlow', sans-serif;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
@@ -48,12 +48,12 @@
       border-bottom: 1px solid var(--border);
       transition: box-shadow .3s;
     }
-    .nav.scrolled { box-shadow: 0 2px 20px rgba(27,58,107,.1); }
+    .nav.scrolled { box-shadow: 0 2px 20px rgba(6,61,46,.1); }
 
     .nav-brand { display:flex; flex-direction:column; }
     .nav-brand-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem; font-weight:800;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; font-weight:400; letter-spacing:.08em;
       color: var(--blue-dark); line-height:1;
     }
     .nav-brand-sub {
@@ -79,21 +79,21 @@
       display: flex; flex-direction:column; justify-content:center;
       padding: 90px 20px 56px;
       position: relative; overflow:hidden;
-      background: linear-gradient(150deg, #fff 0%, var(--pearl) 55%, #e6edf6 100%);
+      background: linear-gradient(150deg, #fff 0%, var(--pearl) 55%, #e8f0ed 100%);
     }
     /* grade arquitetônica de fundo */
     .hero::before {
       content:''; position:absolute; inset:0; pointer-events:none;
       background-image:
-        repeating-linear-gradient(90deg, rgba(27,58,107,.025) 0 1px, transparent 1px 72px),
-        repeating-linear-gradient(0deg,  rgba(27,58,107,.018) 0 1px, transparent 1px 72px);
+        repeating-linear-gradient(90deg, rgba(6,61,46,.025) 0 1px, transparent 1px 72px),
+        repeating-linear-gradient(0deg,  rgba(6,61,46,.018) 0 1px, transparent 1px 72px);
     }
     /* círculo decorativo */
     .hero::after {
       content:''; position:absolute;
       right: -140px; top:50%; transform:translateY(-50%);
       width:500px; height:500px; border-radius:50%;
-      border:1px solid rgba(27,58,107,.06); pointer-events:none;
+      border:1px solid rgba(6,61,46,.06); pointer-events:none;
     }
 
     .hero-tag {
@@ -105,9 +105,9 @@
 
     /* ── EDIT: título principal ── */
     .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 9vw, 5.5rem);
-      font-weight:900; line-height:.95; letter-spacing:-.025em;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-weight:400; line-height:.9; letter-spacing:.05em;
       color:var(--blue-dark); margin-bottom:20px; position:relative;
     }
     .hero-title em   { font-style:italic; color:var(--blue-mid); }
@@ -124,10 +124,10 @@
     /* ── EDIT: WhatsApp do botão hero ── */
     .btn-wa-hero {
       display: inline-flex; align-items:center; gap:9px; width:fit-content;
-      font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;
-      font-weight:700; color:var(--white); background:var(--blue);
+      font-size:.65rem; letter-spacing:.16em; text-transform:uppercase;
+      font-weight:800; color:var(--white); background:var(--blue);
       padding:15px 28px; border-radius:3px;
-      box-shadow: 0 8px 24px rgba(27,58,107,.28);
+      box-shadow: 0 8px 24px rgba(6,61,46,.28);
       transition: background .3s, transform .2s;
     }
     .btn-wa-hero:hover { background:var(--blue-mid); transform:translateY(-2px); }
@@ -136,7 +136,7 @@
     .hero-divider {
       display:flex; align-items:center; gap:10px; margin-top:36px; position:relative;
     }
-    .hero-divider-line { width:36px; height:2px; background:linear-gradient(to right, var(--blue-light), transparent); }
+    .hero-divider-line { width:36px; height:2px; background:linear-gradient(to right, var(--blue-mid), transparent); }
     .hero-divider span { font-size:.5rem; letter-spacing:.25em; text-transform:uppercase; color:var(--slate-lt); font-weight:600; }
 
     /* ══════════════════════════════
@@ -152,7 +152,7 @@
       width:100%; max-width:360px; margin:0 auto 36px;
       border-radius:6px; overflow:hidden; position:relative;
       aspect-ratio:4/3;
-      box-shadow: 0 20px 60px rgba(27,58,107,.18);
+      box-shadow: 0 20px 60px rgba(6,61,46,.18);
     }
     .sobre-foto-wrap img {
       width:100%; height:100%;
@@ -173,8 +173,8 @@
     .sec-tag::before { content:''; width:22px; height:2px; background:var(--blue-mid); flex-shrink:0; }
 
     .sec-title {
-      font-family:'Playfair Display', serif;
-      font-size:clamp(1.7rem,6vw,2.5rem); font-weight:800;
+      font-family:'Bebas Neue', sans-serif;
+      font-size:clamp(2rem,7vw,3rem); font-weight:400;
       color:var(--blue-dark); line-height:1.06; margin-bottom:16px;
     }
     .sec-title em { font-style:italic; color:var(--blue-mid); }
@@ -186,7 +186,7 @@
       display:inline-flex; align-items:center; gap:7px; margin-top:10px;
       font-size:.58rem; letter-spacing:.16em; text-transform:uppercase;
       color:var(--blue); font-weight:700;
-      border:2px solid rgba(27,58,107,.2); padding:9px 14px; border-radius:3px;
+      border:2px solid rgba(6,61,46,.2); padding:9px 14px; border-radius:3px;
     }
 
     /* ══════════════════════════════
@@ -227,29 +227,29 @@
     .const-card:hover .const-logo img { filter:grayscale(0) opacity(1); }
 
     .const-name {
-      font-family:'Playfair Display', serif;
-      font-size:.95rem; font-weight:700; color:var(--blue-dark);
+      font-family:'Bebas Neue', sans-serif;
+      font-size:1.1rem; font-weight:400; letter-spacing:.04em; color:var(--blue-dark);
     }
 
     .const-btn {
       display:inline-flex; align-items:center; gap:5px; margin-top:2px;
       font-size:.52rem; letter-spacing:.14em; text-transform:uppercase;
       font-weight:700; color:var(--blue);
-      border:2px solid rgba(27,58,107,.18); padding:7px 12px; border-radius:3px;
+      border:2px solid rgba(6,61,46,.18); padding:7px 12px; border-radius:3px;
       width:fit-content; transition:all .3s;
     }
     .const-btn svg { width:11px; height:11px; fill:currentColor; }
     .const-btn:hover { background:var(--blue); color:var(--white); border-color:var(--blue); }
 
     .const-soon {
-      background:transparent; border:2px dashed rgba(27,58,107,.12);
+      background:transparent; border:2px dashed rgba(6,61,46,.12);
       display:flex; flex-direction:column;
       justify-content:center; align-items:center;
       text-align:center; gap:8px; padding:24px 14px; min-height:140px;
     }
     .const-soon-plus { font-size:1.4rem; opacity:.15; }
     .const-soon-txt {
-      font-family:'Playfair Display', serif;
+      font-family:'Bebas Neue', sans-serif;
       font-size:.82rem; font-weight:700; color:var(--slate-lt);
     }
 
@@ -274,8 +274,8 @@
     }
 
     .form-ht {
-      font-family:'Playfair Display', serif;
-      font-size:1.45rem; font-weight:800; color:var(--blue-dark); margin-bottom:4px;
+      font-family:'Bebas Neue', sans-serif;
+      font-size:1.7rem; font-weight:400; letter-spacing:.04em; color:var(--blue-dark); margin-bottom:4px;
     }
     .form-ht em { font-style:italic; color:var(--blue-mid); }
     .form-sub { font-size:.63rem; color:var(--slate-lt); margin-bottom:22px; line-height:1.6; font-weight:500; }
@@ -287,14 +287,14 @@
     }
     .fi, .fs {
       width:100%; background:var(--white);
-      border:2px solid rgba(27,58,107,.12); color:#0F1923;
-      font-family:'Plus Jakarta Sans', sans-serif; font-size:.83rem;
+      border:2px solid rgba(6,61,46,.12); color:#0F1923;
+      font-family:'Barlow', sans-serif; font-size:.83rem;
       padding:11px 13px; border-radius:4px;
       outline:none; -webkit-appearance:none;
       transition:border-color .3s, box-shadow .3s;
     }
     .fi:focus, .fs:focus {
-      border-color:var(--blue); box-shadow:0 0 0 3px rgba(27,58,107,.08);
+      border-color:var(--blue); box-shadow:0 0 0 3px rgba(6,61,46,.08);
     }
     .fi::placeholder { color:rgba(61,74,92,.28); }
     .sw { position:relative; }
@@ -308,7 +308,7 @@
     .fck input[type=checkbox] {
       appearance:none; -webkit-appearance:none;
       width:16px; height:16px; flex-shrink:0; margin-top:2px;
-      border:2px solid rgba(27,58,107,.22); border-radius:3px;
+      border:2px solid rgba(6,61,46,.22); border-radius:3px;
       background:var(--white); transition:all .2s;
     }
     .fck input[type=checkbox]:checked {
@@ -323,18 +323,18 @@
       font-size:.6rem; letter-spacing:.18em; text-transform:uppercase;
       color:var(--white); background:var(--blue); padding:14px;
       font-weight:700; border:none; border-radius:4px;
-      font-family:'Plus Jakarta Sans', sans-serif;
+      font-family:'Barlow', sans-serif;
       transition: background .3s, transform .2s, box-shadow .3s;
     }
     .btn-send svg { width:15px; height:15px; fill:currentColor; }
-    .btn-send:hover { background:var(--blue-mid); transform:translateY(-2px); box-shadow:0 8px 24px rgba(27,58,107,.3); }
+    .btn-send:hover { background:var(--blue-mid); transform:translateY(-2px); box-shadow:0 8px 24px rgba(6,61,46,.3); }
 
     .form-ok { display:none; text-align:center; padding:28px 12px; }
     .form-ok.show { display:block; }
     .form-ok-ico { font-size:2rem; margin-bottom:10px; }
     .form-ok-title {
-      font-family:'Playfair Display', serif;
-      font-size:1.4rem; font-weight:800; color:var(--blue-dark); margin-bottom:8px;
+      font-family:'Bebas Neue', sans-serif;
+      font-size:1.6rem; font-weight:400; letter-spacing:.04em; color:var(--blue-dark); margin-bottom:8px;
     }
     .form-ok-title em { font-style:italic; color:var(--blue-mid); }
     .form-ok-sub { font-size:.66rem; color:var(--slate); line-height:1.7; }
@@ -360,7 +360,7 @@
     }
     .cta-tag::before { content:''; width:20px; height:2px; background:rgba(255,255,255,.25); }
     .cta-title {
-      font-family:'Playfair Display', serif;
+      font-family:'Bebas Neue', sans-serif;
       font-size:clamp(2rem,8vw,3.2rem); font-weight:900;
       color:var(--white); line-height:1.04; margin-bottom:14px;
     }
@@ -399,8 +399,8 @@
       padding:24px 20px; text-align:center;
     }
     .footer-name {
-      font-family:'Playfair Display', serif;
-      font-size:.95rem; color:rgba(255,255,255,.65); font-weight:800; margin-bottom:5px;
+      font-family:'Bebas Neue', sans-serif;
+      font-size:1.1rem; color:rgba(255,255,255,.65); font-weight:400; letter-spacing:.1em; margin-bottom:5px;
     }
     .footer-info {
       font-size:.48rem; color:rgba(255,255,255,.28);
@@ -477,7 +477,7 @@
   <h1 class="hero-title rv">
     Encontre o<br>
     <em>apartamento</em><br>
-    <span class="out">ideal</span> para você.
+    <span class="out">ideal.</span> para você.
   </h1>
 
   <!-- ── EDIT: subtítulo hero ── -->
