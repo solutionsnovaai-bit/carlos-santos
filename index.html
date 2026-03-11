@@ -4,305 +4,750 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Carlos Santos | Corretor de Imóveis</title>
-  <meta name="description" content="Acesse os melhores apartamentos e studios em lançamento. Atendimento direto com o Corretor Carlos Santos — CRECI 245180-F."/>
+  <meta name="description" content="Corretor de imóveis parceiro das maiores construtoras do Brasil. CRECI 245180-F. Fale direto no WhatsApp."/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── VARIÁVEIS ── */
+    :root {
+      --blue:       #1B3A6B;
+      --blue-dark:  #0D2240;
+      --blue-mid:   #2755A0;
+      --blue-light: #4A7CC9;
+      --pearl:      #F6F5F2;
+      --white:      #FFFFFF;
+      --slate:      #3D4A5C;
+      --slate-lt:   #8896A8;
+      --border:     rgba(27,58,107,.1);
+      --shadow:     0 8px 32px rgba(27,58,107,.12);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { font-size:16px; scroll-behavior:smooth; }
+    body {
+      background: var(--pearl);
+      color: #0F1923;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display:block; max-width:100%; }
+    a { text-decoration:none; color:inherit; }
+
+    /* ══════════════════════════════
+       NAV
+    ══════════════════════════════ */
+    .nav {
+      position: fixed; top:0; left:0; right:0; z-index:100;
+      height: 60px;
+      display: flex; align-items:center; justify-content:space-between;
+      padding: 0 20px;
+      background: rgba(246,245,242,.93);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow .3s;
+    }
+    .nav.scrolled { box-shadow: 0 2px 20px rgba(27,58,107,.1); }
+
+    .nav-brand { display:flex; flex-direction:column; }
+    .nav-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-weight:800;
+      color: var(--blue-dark); line-height:1;
+    }
+    .nav-brand-sub {
+      font-size: .42rem; letter-spacing:.25em; text-transform:uppercase;
+      color: var(--slate-lt); margin-top:3px; font-weight:600;
+    }
+
+    /* ── EDIT: botão nav ── */
+    .nav-btn {
+      display: flex; align-items:center; gap:6px;
+      font-size:.56rem; letter-spacing:.12em; text-transform:uppercase;
+      font-weight:700; color:var(--white); background:var(--blue);
+      padding: 9px 16px; border-radius:3px; transition: background .3s;
+    }
+    .nav-btn:hover { background: var(--blue-mid); }
+    .nav-btn svg { width:13px; height:13px; fill:currentColor; flex-shrink:0; }
+
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+    .hero {
+      min-height: 100svh;
+      display: flex; flex-direction:column; justify-content:center;
+      padding: 90px 20px 56px;
+      position: relative; overflow:hidden;
+      background: linear-gradient(150deg, #fff 0%, var(--pearl) 55%, #e6edf6 100%);
+    }
+    /* grade arquitetônica de fundo */
+    .hero::before {
+      content:''; position:absolute; inset:0; pointer-events:none;
+      background-image:
+        repeating-linear-gradient(90deg, rgba(27,58,107,.025) 0 1px, transparent 1px 72px),
+        repeating-linear-gradient(0deg,  rgba(27,58,107,.018) 0 1px, transparent 1px 72px);
+    }
+    /* círculo decorativo */
+    .hero::after {
+      content:''; position:absolute;
+      right: -140px; top:50%; transform:translateY(-50%);
+      width:500px; height:500px; border-radius:50%;
+      border:1px solid rgba(27,58,107,.06); pointer-events:none;
+    }
+
+    .hero-tag {
+      font-size:.56rem; letter-spacing:.35em; text-transform:uppercase;
+      color:var(--blue-mid); font-weight:700; margin-bottom:16px;
+      display:flex; align-items:center; gap:10px; position:relative;
+    }
+    .hero-tag::before { content:''; width:24px; height:2px; background:var(--blue-mid); flex-shrink:0; }
+
+    /* ── EDIT: título principal ── */
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 9vw, 5.5rem);
+      font-weight:900; line-height:.95; letter-spacing:-.025em;
+      color:var(--blue-dark); margin-bottom:20px; position:relative;
+    }
+    .hero-title em   { font-style:italic; color:var(--blue-mid); }
+    .hero-title .out { -webkit-text-stroke:2px var(--blue-dark); color:transparent; }
+
+    /* ── EDIT: subtítulo ── */
+    .hero-sub {
+      font-size:.88rem; line-height:1.75; color:var(--slate);
+      max-width:380px; margin-bottom:32px; font-weight:400; position:relative;
+    }
+
+    .hero-actions { display:flex; flex-direction:column; gap:12px; position:relative; }
+
+    /* ── EDIT: WhatsApp do botão hero ── */
+    .btn-wa-hero {
+      display: inline-flex; align-items:center; gap:9px; width:fit-content;
+      font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;
+      font-weight:700; color:var(--white); background:var(--blue);
+      padding:15px 28px; border-radius:3px;
+      box-shadow: 0 8px 24px rgba(27,58,107,.28);
+      transition: background .3s, transform .2s;
+    }
+    .btn-wa-hero:hover { background:var(--blue-mid); transform:translateY(-2px); }
+    .btn-wa-hero svg { width:17px; height:17px; fill:currentColor; }
+
+    .hero-divider {
+      display:flex; align-items:center; gap:10px; margin-top:36px; position:relative;
+    }
+    .hero-divider-line { width:36px; height:2px; background:linear-gradient(to right, var(--blue-light), transparent); }
+    .hero-divider span { font-size:.5rem; letter-spacing:.25em; text-transform:uppercase; color:var(--slate-lt); font-weight:600; }
+
+    /* ══════════════════════════════
+       SOBRE
+    ══════════════════════════════ */
+    .sobre {
+      background: var(--white);
+      padding: 64px 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .sobre-foto-wrap {
+      width:100%; max-width:360px; margin:0 auto 36px;
+      border-radius:6px; overflow:hidden; position:relative;
+      aspect-ratio:4/3;
+      box-shadow: 0 20px 60px rgba(27,58,107,.18);
+    }
+    .sobre-foto-wrap img {
+      width:100%; height:100%;
+      object-fit:cover; object-position:center 10%;
+    }
+    .sobre-foto-badge {
+      position:absolute; bottom:14px; left:14px;
+      background:var(--blue); color:var(--white);
+      font-size:.5rem; letter-spacing:.2em; text-transform:uppercase;
+      font-weight:700; padding:6px 12px; border-radius:2px;
+    }
+
+    .sec-tag {
+      font-size:.55rem; letter-spacing:.33em; text-transform:uppercase;
+      color:var(--blue-mid); font-weight:700; margin-bottom:10px;
+      display:flex; align-items:center; gap:9px;
+    }
+    .sec-tag::before { content:''; width:22px; height:2px; background:var(--blue-mid); flex-shrink:0; }
+
+    .sec-title {
+      font-family:'Playfair Display', serif;
+      font-size:clamp(1.7rem,6vw,2.5rem); font-weight:800;
+      color:var(--blue-dark); line-height:1.06; margin-bottom:16px;
+    }
+    .sec-title em { font-style:italic; color:var(--blue-mid); }
+
+    .sobre-p {
+      font-size:.85rem; line-height:1.8; color:var(--slate); margin-bottom:10px;
+    }
+    .sobre-badge {
+      display:inline-flex; align-items:center; gap:7px; margin-top:10px;
+      font-size:.58rem; letter-spacing:.16em; text-transform:uppercase;
+      color:var(--blue); font-weight:700;
+      border:2px solid rgba(27,58,107,.2); padding:9px 14px; border-radius:3px;
+    }
+
+    /* ══════════════════════════════
+       CONSTRUTORAS
+    ══════════════════════════════ */
+    .construtoras {
+      padding: 64px 20px;
+      background: var(--pearl);
+      border-top: 1px solid var(--border);
+    }
+
+    .const-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:2px; background:var(--border); margin-top:32px;
+    }
+
+    .const-card {
+      background:var(--white); padding:24px 18px;
+      display:flex; flex-direction:column; gap:10px;
+      position:relative; overflow:hidden;
+      transition: background .3s;
+    }
+    .const-card::after {
+      content:''; position:absolute;
+      top:0; left:0; right:0; height:3px;
+      background:linear-gradient(to right, var(--blue), var(--blue-light));
+      transform:scaleX(0); transform-origin:left; transition:transform .35s;
+    }
+    .const-card:hover { background:var(--pearl); }
+    .const-card:hover::after { transform:scaleX(1); }
+
+    .const-logo { height:40px; display:flex; align-items:center; }
+    .const-logo img {
+      max-height:34px; max-width:110px;
+      object-fit:contain; object-position:left;
+      filter:grayscale(1) opacity(.4); transition:filter .35s;
+    }
+    .const-card:hover .const-logo img { filter:grayscale(0) opacity(1); }
+
+    .const-name {
+      font-family:'Playfair Display', serif;
+      font-size:.95rem; font-weight:700; color:var(--blue-dark);
+    }
+
+    .const-btn {
+      display:inline-flex; align-items:center; gap:5px; margin-top:2px;
+      font-size:.52rem; letter-spacing:.14em; text-transform:uppercase;
+      font-weight:700; color:var(--blue);
+      border:2px solid rgba(27,58,107,.18); padding:7px 12px; border-radius:3px;
+      width:fit-content; transition:all .3s;
+    }
+    .const-btn svg { width:11px; height:11px; fill:currentColor; }
+    .const-btn:hover { background:var(--blue); color:var(--white); border-color:var(--blue); }
+
+    .const-soon {
+      background:transparent; border:2px dashed rgba(27,58,107,.12);
+      display:flex; flex-direction:column;
+      justify-content:center; align-items:center;
+      text-align:center; gap:8px; padding:24px 14px; min-height:140px;
+    }
+    .const-soon-plus { font-size:1.4rem; opacity:.15; }
+    .const-soon-txt {
+      font-family:'Playfair Display', serif;
+      font-size:.82rem; font-weight:700; color:var(--slate-lt);
+    }
+
+    /* ══════════════════════════════
+       CONTATO / LEADS
+    ══════════════════════════════ */
+    .contato {
+      padding: 64px 20px;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+    }
+
+    .form-wrap {
+      background:var(--pearl); border:1px solid var(--border);
+      border-radius:6px; padding:28px 20px; position:relative;
+      box-shadow: var(--shadow); margin-top:28px;
+    }
+    .form-wrap::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(to right, var(--blue), var(--blue-light));
+      border-radius:6px 6px 0 0;
+    }
+
+    .form-ht {
+      font-family:'Playfair Display', serif;
+      font-size:1.45rem; font-weight:800; color:var(--blue-dark); margin-bottom:4px;
+    }
+    .form-ht em { font-style:italic; color:var(--blue-mid); }
+    .form-sub { font-size:.63rem; color:var(--slate-lt); margin-bottom:22px; line-height:1.6; font-weight:500; }
+
+    .fg { margin-bottom:13px; }
+    .fl {
+      display:block; font-size:.5rem; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--slate-lt); margin-bottom:6px; font-weight:700;
+    }
+    .fi, .fs {
+      width:100%; background:var(--white);
+      border:2px solid rgba(27,58,107,.12); color:#0F1923;
+      font-family:'Plus Jakarta Sans', sans-serif; font-size:.83rem;
+      padding:11px 13px; border-radius:4px;
+      outline:none; -webkit-appearance:none;
+      transition:border-color .3s, box-shadow .3s;
+    }
+    .fi:focus, .fs:focus {
+      border-color:var(--blue); box-shadow:0 0 0 3px rgba(27,58,107,.08);
+    }
+    .fi::placeholder { color:rgba(61,74,92,.28); }
+    .sw { position:relative; }
+    .sw::after {
+      content:'▾'; position:absolute; right:12px; top:50%;
+      transform:translateY(-50%); color:var(--blue); font-size:.7rem; pointer-events:none;
+    }
+    .fs option { background:var(--white); }
+
+    .fck { display:flex; align-items:flex-start; gap:9px; margin-bottom:18px; }
+    .fck input[type=checkbox] {
+      appearance:none; -webkit-appearance:none;
+      width:16px; height:16px; flex-shrink:0; margin-top:2px;
+      border:2px solid rgba(27,58,107,.22); border-radius:3px;
+      background:var(--white); transition:all .2s;
+    }
+    .fck input[type=checkbox]:checked {
+      background:var(--blue); border-color:var(--blue);
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 6l3 3 5-5' stroke='white' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-size:contain; background-repeat:no-repeat; background-position:center;
+    }
+    .fck label { font-size:.61rem; color:var(--slate); line-height:1.6; }
+
+    .btn-send {
+      width:100%; display:flex; align-items:center; justify-content:center; gap:9px;
+      font-size:.6rem; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--white); background:var(--blue); padding:14px;
+      font-weight:700; border:none; border-radius:4px;
+      font-family:'Plus Jakarta Sans', sans-serif;
+      transition: background .3s, transform .2s, box-shadow .3s;
+    }
+    .btn-send svg { width:15px; height:15px; fill:currentColor; }
+    .btn-send:hover { background:var(--blue-mid); transform:translateY(-2px); box-shadow:0 8px 24px rgba(27,58,107,.3); }
+
+    .form-ok { display:none; text-align:center; padding:28px 12px; }
+    .form-ok.show { display:block; }
+    .form-ok-ico { font-size:2rem; margin-bottom:10px; }
+    .form-ok-title {
+      font-family:'Playfair Display', serif;
+      font-size:1.4rem; font-weight:800; color:var(--blue-dark); margin-bottom:8px;
+    }
+    .form-ok-title em { font-style:italic; color:var(--blue-mid); }
+    .form-ok-sub { font-size:.66rem; color:var(--slate); line-height:1.7; }
+    .form-ok-sub a { color:var(--blue); font-weight:600; }
+
+    /* ══════════════════════════════
+       CTA FINAL
+    ══════════════════════════════ */
+    .cta {
+      background:var(--blue-dark); padding:64px 20px; text-align:center;
+      position:relative; overflow:hidden;
+    }
+    .cta::before {
+      content:''; position:absolute; inset:0; pointer-events:none;
+      background-image:
+        repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 1px, transparent 1px 72px),
+        repeating-linear-gradient(0deg,  rgba(255,255,255,.015) 0 1px, transparent 1px 72px);
+    }
+    .cta-tag {
+      font-size:.54rem; letter-spacing:.3em; text-transform:uppercase;
+      color:rgba(255,255,255,.45); font-weight:700; margin-bottom:12px;
+      display:flex; align-items:center; justify-content:center; gap:9px;
+    }
+    .cta-tag::before { content:''; width:20px; height:2px; background:rgba(255,255,255,.25); }
+    .cta-title {
+      font-family:'Playfair Display', serif;
+      font-size:clamp(2rem,8vw,3.2rem); font-weight:900;
+      color:var(--white); line-height:1.04; margin-bottom:14px;
+    }
+    .cta-title em { font-style:italic; color:rgba(160,200,255,.95); }
+    .cta-sub {
+      font-size:.82rem; color:rgba(255,255,255,.55);
+      max-width:320px; margin:0 auto 32px; line-height:1.75;
+    }
+    .cta-btns { display:flex; flex-direction:column; align-items:center; gap:10px; }
+
+    /* ── EDIT: botão WhatsApp do CTA ── */
+    .btn-wa {
+      display:inline-flex; align-items:center; gap:9px; width:fit-content;
+      font-size:.6rem; letter-spacing:.14em; text-transform:uppercase;
+      font-weight:700; color:#fff; background:#25D366;
+      padding:14px 28px; border-radius:3px; transition:filter .3s;
+    }
+    .btn-wa svg { width:15px; height:15px; fill:currentColor; }
+    .btn-wa:hover { filter:brightness(1.1); }
+
+    .btn-tel {
+      display:inline-flex; align-items:center; gap:7px; width:fit-content;
+      font-size:.6rem; letter-spacing:.14em; text-transform:uppercase;
+      font-weight:600; color:rgba(255,255,255,.7);
+      border:2px solid rgba(255,255,255,.18); padding:14px 24px; border-radius:3px;
+      transition:all .3s;
+    }
+    .btn-tel:hover { border-color:rgba(255,255,255,.55); color:var(--white); }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer {
+      background:var(--blue-dark);
+      border-top:1px solid rgba(255,255,255,.06);
+      padding:24px 20px; text-align:center;
+    }
+    .footer-name {
+      font-family:'Playfair Display', serif;
+      font-size:.95rem; color:rgba(255,255,255,.65); font-weight:800; margin-bottom:5px;
+    }
+    .footer-info {
+      font-size:.48rem; color:rgba(255,255,255,.28);
+      letter-spacing:.1em; line-height:1.8; font-weight:500;
+    }
+
+    /* ══════════════════════════════
+       SCROLL REVEAL
+    ══════════════════════════════ */
+    .rv {
+      opacity:0; transform:translateY(28px);
+      transition: opacity .75s cubic-bezier(.23,1,.32,1), transform .75s cubic-bezier(.23,1,.32,1);
+    }
+    .rv.on { opacity:1; transform:translateY(0); }
+    .d1 { transition-delay:.08s; }
+    .d2 { transition-delay:.16s; }
+    .d3 { transition-delay:.24s; }
+    .d4 { transition-delay:.32s; }
+
+    /* ══════════════════════════════
+       TABLET / DESKTOP
+    ══════════════════════════════ */
+    @media (min-width: 600px) {
+      .nav { padding:0 32px; }
+      .hero { padding:100px 32px 64px; }
+      .sobre, .construtoras, .contato, .cta { padding:80px 32px; }
+      footer { padding:28px 32px; }
+
+      /* sobre: foto ao lado do texto em telas maiores */
+      .sobre-inner {
+        display:flex; gap:40px; align-items:flex-start;
+      }
+      .sobre-foto-wrap {
+        width:200px; flex-shrink:0; margin:0;
+        aspect-ratio:3/4;
+      }
+
+      .cta-btns { flex-direction:row; justify-content:center; }
+    }
+
+    @media (min-width: 900px) {
+      .nav { padding:0 60px; height:68px; }
+      .hero { padding:120px 60px 80px; }
+      .sobre, .construtoras, .contato, .cta { padding:96px 60px; }
+      .sobre-foto-wrap { width:260px; }
+      .const-grid { grid-template-columns:repeat(3,1fr); }
+      .form-wrap { padding:40px 36px; }
+      footer { padding:32px 60px; }
+    }
+  </style>
 </head>
 <body>
 
 <!-- ══ NAV ══ -->
-<nav class="navbar">
-  <a href="#home" class="nav-brand">
+<nav class="nav" id="nav">
+  <a href="#" class="nav-brand">
     <span class="nav-brand-name">Carlos Santos</span>
-    <span class="nav-brand-sub">Corretor de Imóveis · CRECI 245180-F</span>
+    <!-- ── EDIT: subtítulo nav ── -->
+    <span class="nav-brand-sub">Corretor · CRECI 245180-F</span>
   </a>
-  <ul class="nav-links">
-    <li><a href="#empreendimentos">Empreendimentos</a></li>
-    <li><a href="#construtoras">Construtoras</a></li>
-    <li><a href="#interesse">Contato</a></li>
-  </ul>
-  <a href="https://wa.me/5511940820563?text=Olá%20Carlos%2C%20vim%20pelo%20portal%20e%20quero%20mais%20informações!" class="nav-cta" target="_blank">
+  <!-- ── EDIT: WhatsApp nav ── -->
+  <a href="https://wa.me/5511940820563?text=Olá%20Carlos%2C%20vim%20pelo%20portal!" class="nav-btn" target="_blank">
     <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    Falar com Carlos
+    Falar Agora
   </a>
 </nav>
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-lines"></div>
-  <div class="hero-circle"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Portal Imobiliário · São Paulo & Região</p>
-    <h1 class="hero-title">
-      Descubra os melhores<br>
-      <em>apartamentos</em> e<br>
-      <span class="outline">studios</span> da cidade.
-    </h1>
-    <p class="hero-subtitle">
-      Acesso direto às maiores construtoras do Brasil. Lançamentos exclusivos, condições especiais e atendimento personalizado de quem realmente entende do mercado.
-    </p>
-    <div class="hero-actions">
-      <a href="https://wa.me/5511940820563?text=Olá%20Carlos%2C%20quero%20conhecer%20os%20lançamentos%20disponíveis!" class="btn-primary" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Falar no WhatsApp
-      </a>
-      <a href="#construtoras" class="btn-secondary">Ver Construtoras</a>
-    </div>
+  <!-- ── EDIT: tag hero ── -->
+  <p class="hero-tag rv">Apartamentos & Studios · São Paulo</p>
+
+  <!-- ── EDIT: título hero ── -->
+  <h1 class="hero-title rv">
+    Encontre o<br>
+    <em>apartamento</em><br>
+    <span class="out">ideal</span> para você.
+  </h1>
+
+  <!-- ── EDIT: subtítulo hero ── -->
+  <p class="hero-sub rv">Acesso direto às maiores construtoras do Brasil. Lançamentos exclusivos, condições especiais e atendimento no WhatsApp.</p>
+
+  <div class="hero-actions rv">
+    <!-- ── EDIT: WhatsApp botão hero ── -->
+    <a href="https://wa.me/5511940820563?text=Olá%20Carlos%2C%20quero%20conhecer%20os%20lançamentos%20disponíveis!" class="btn-wa-hero" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Falar no WhatsApp
+    </a>
   </div>
-  <div class="hero-scroll-hint">
-    <div class="scroll-line"></div>
-    <span>Role para explorar</span>
+
+  <div class="hero-divider rv">
+    <div class="hero-divider-line"></div>
+    <span>Role para ver mais</span>
   </div>
 </section>
 
-<!-- ══ BUILDING REVEAL ══ -->
-<section class="building-section">
-  <div class="building-clip">
-    <img class="building-img"
-      src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80"
-      alt="Empreendimento de alto padrão" loading="lazy"/>
-    <div class="building-overlay"></div>
-    <div class="building-reveal-mask"></div>
-  </div>
-  <div class="building-text">
-    <p class="s-eyebrow">Novos Lançamentos</p>
-    <h2 class="s-title">Arquitetura que<br><em>transforma</em> sua vida.</h2>
-    <p>Empreendimentos selecionados com rigor. Localização, qualidade construtiva e valorização real para o seu patrimônio.</p>
+<!-- ══ SOBRE ══ -->
+<section class="sobre" id="sobre">
+  <div class="sobre-inner">
+
+    <!-- Foto do Carlos -->
+    <div class="sobre-foto-wrap rv">
+      <!-- ── EDIT: foto do corretor ── -->
+      <img src="images/carlos.jpg" alt="Carlos Santos — Corretor de Imóveis">
+      <span class="sobre-foto-badge">CRECI 245180-F</span>
+    </div>
+
+    <!-- Texto -->
+    <div>
+      <p class="sec-tag rv">Quem é Carlos Santos</p>
+      <!-- ── EDIT: título sobre ── -->
+      <h2 class="sec-title rv">Seu corretor de <em>confiança</em> em São Paulo</h2>
+      <!-- ── EDIT: textos sobre o corretor ── -->
+      <p class="sobre-p rv">Carlos Santos é corretor credenciado e parceiro oficial das maiores construtoras do Brasil. Dedicação total ao cliente — do primeiro contato até a assinatura.</p>
+      <p class="sobre-p rv">Você tem acesso antecipado a lançamentos e condições que não estão disponíveis em outros canais. Atendimento direto, sem enrolação.</p>
+      <div class="sobre-badge rv">✓ CRECI-SP 245180-F</div>
+    </div>
+
   </div>
 </section>
-
-<!-- ══ EMPREENDIMENTOS ══ -->
-<section class="section emp-section" id="empreendimentos">
-  <div class="reveal">
-    <p class="s-eyebrow">Em Lançamento</p>
-    <h2 class="s-title">Destaques do <em>momento</em></h2>
-  </div>
-  <div class="emp-grid">
-    <div class="emp-card reveal delay-1">
-      <div class="emp-thumb">
-        <div class="emp-thumb-pattern"></div>
-        <span class="emp-badge">Lançamento</span>
-      </div>
-      <div class="emp-body">
-        <p class="emp-tag">MRV Engenharia</p>
-        <h3 class="emp-name">Studio Aurora</h3>
-        <p class="emp-details">Studios de 28–45m² · Zona Sul · Lazer completo · Fácil financiamento</p>
-        <p class="emp-price">A partir de R$ 180.000</p>
-      </div>
-    </div>
-    <div class="emp-card reveal delay-2">
-      <div class="emp-thumb" style="background:linear-gradient(135deg,#1B3A6B 0%,#4A7CC9 100%)">
-        <div class="emp-thumb-pattern"></div>
-        <span class="emp-badge">Pré-lançamento</span>
-      </div>
-      <div class="emp-body">
-        <p class="emp-tag">Econ Construtora</p>
-        <h3 class="emp-name">Residencial Skyline</h3>
-        <p class="emp-details">2 e 3 dorms · Alto padrão · Varanda gourmet · Região nobre</p>
-        <p class="emp-price">A partir de R$ 420.000</p>
-      </div>
-    </div>
-    <div class="emp-card reveal delay-3">
-      <div class="emp-thumb" style="background:linear-gradient(135deg,#0D2240 0%,#2755A0 100%)">
-        <div class="emp-thumb-pattern"></div>
-        <span class="emp-badge">Exclusivo</span>
-      </div>
-      <div class="emp-body">
-        <p class="emp-tag">Cury Construtora</p>
-        <h3 class="emp-name">Icon Residence</h3>
-        <p class="emp-details">3 suítes · Cobertura · Infraestrutura de clube · Centro</p>
-        <p class="emp-price">A partir de R$ 680.000</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
 
 <!-- ══ CONSTRUTORAS ══ -->
-<section class="section" id="construtoras">
-  <div class="reveal">
-    <p class="s-eyebrow">Parceiras Oficiais</p>
-    <h2 class="s-title">As maiores <em>construtoras</em><br>do Brasil, para você</h2>
-  </div>
-  <div class="construtoras-grid">
+<section class="construtoras" id="construtoras">
+  <p class="sec-tag rv">Parceiras Oficiais</p>
+  <h2 class="sec-title rv">As maiores <em>construtoras</em> do Brasil, para você</h2>
 
-    <div class="const-card reveal delay-1">
-      <div class="const-logo-wrap"><img src="images/econ.png" alt="Econ Construtora"></div>
-      <div class="const-name">Econ Construtora</div>
-      <div class="const-desc">Especialista em empreendimentos de médio e alto padrão, com projetos modernos e infraestrutura completa de lazer. Reconhecida pela qualidade de acabamento e pontualidade nas entregas.</div>
-      <a class="const-cta" href="#interesse" onclick="preencherConstrutora('Econ Construtora')">
+  <div class="const-grid">
+
+    <!-- ── EDIT: para cada construtora, troque o logo e o nome ── -->
+    <div class="const-card rv d1">
+      <div class="const-logo"><img src="images/econ.png" alt="Econ"></div>
+      <div class="const-name">Econ</div>
+      <a class="const-btn" href="#contato" onclick="preencher('Econ Construtora')">
         <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
-        Tenho Interesse
+        Interesse
       </a>
     </div>
 
-    <div class="const-card reveal delay-2">
-      <div class="const-logo-wrap"><img src="images/mrv.png" alt="MRV Engenharia"></div>
-      <div class="const-name">MRV Engenharia</div>
-      <div class="const-desc">A maior construtora do Brasil em volume de unidades. Líder no programa Minha Casa Minha Vida, com financiamento facilitado via Caixa e presença em centenas de cidades.</div>
-      <a class="const-cta" href="#interesse" onclick="preencherConstrutora('MRV Engenharia')">
+    <div class="const-card rv d2">
+      <div class="const-logo"><img src="images/mrv.png" alt="MRV"></div>
+      <div class="const-name">MRV</div>
+      <a class="const-btn" href="#contato" onclick="preencher('MRV Engenharia')">
         <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
-        Tenho Interesse
+        Interesse
       </a>
     </div>
 
-    <div class="const-card reveal delay-3">
-      <div class="const-logo-wrap"><img src="images/plano.png" alt="Plano & Plano"></div>
+    <div class="const-card rv d1">
+      <div class="const-logo"><img src="images/plano.png" alt="Plano & Plano"></div>
       <div class="const-name">Plano & Plano</div>
-      <div class="const-desc">Focada em imóveis econômicos e médio padrão. Reconhecida pela agilidade nos processos de aprovação de crédito e portfólio diversificado em regiões estratégicas.</div>
-      <a class="const-cta" href="#interesse" onclick="preencherConstrutora('Plano & Plano')">
+      <a class="const-btn" href="#contato" onclick="preencher('Plano & Plano')">
         <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
-        Tenho Interesse
+        Interesse
       </a>
     </div>
 
-    <div class="const-card reveal delay-1">
-      <div class="const-logo-wrap"><img src="images/tenda.png" alt="Construtora Tenda"></div>
-      <div class="const-name">Construtora Tenda</div>
-      <div class="const-desc">"Construindo Felicidade" — referência em habitação popular com qualidade. Forte atuação no programa federal de moradia, com plantas funcionais e financiamento acessível.</div>
-      <a class="const-cta" href="#interesse" onclick="preencherConstrutora('Construtora Tenda')">
+    <div class="const-card rv d2">
+      <div class="const-logo"><img src="images/tenda.png" alt="Tenda"></div>
+      <div class="const-name">Tenda</div>
+      <a class="const-btn" href="#contato" onclick="preencher('Construtora Tenda')">
         <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
-        Tenho Interesse
+        Interesse
       </a>
     </div>
 
-    <div class="const-card reveal delay-2">
-      <div class="const-logo-wrap"><img src="images/cury.png" alt="Cury Construtora"></div>
-      <div class="const-name">Cury Construtora</div>
-      <div class="const-desc">Com forte atuação em São Paulo e interior, a Cury entrega empreendimentos bem localizados com excelente infraestrutura de lazer e total transparência no relacionamento.</div>
-      <a class="const-cta" href="#interesse" onclick="preencherConstrutora('Cury Construtora')">
+    <div class="const-card rv d1">
+      <div class="const-logo"><img src="images/cury.png" alt="Cury"></div>
+      <div class="const-name">Cury</div>
+      <a class="const-btn" href="#contato" onclick="preencher('Cury Construtora')">
         <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
-        Tenho Interesse
+        Interesse
       </a>
     </div>
 
-    <div class="const-card const-soon reveal delay-3">
-      <div class="const-soon-icon">+</div>
-      <div class="const-soon-title">Mais construtoras<br>em breve</div>
-      <div class="const-soon-sub">Novos parceiros sendo incorporados. Fale com Carlos para acessar outros empreendimentos disponíveis.</div>
+    <div class="const-card const-soon rv d2">
+      <div class="const-soon-plus">+</div>
+      <div class="const-soon-txt">Mais em breve</div>
     </div>
 
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- ══ CONTATO / LEADS ══ -->
+<section class="contato" id="contato">
+  <p class="sec-tag rv">Atendimento Direto</p>
+  <h2 class="sec-title rv">Receba uma <em>proposta</em> feita para você</h2>
 
-<!-- ══ LEADS ══ -->
-<section class="section leads-section" id="interesse">
-  <div class="leads-wrap">
-    <div class="leads-left">
-      <p class="s-eyebrow reveal">Atendimento Personalizado</p>
-      <h2 class="s-title reveal">Receba uma <em>proposta</em><br>feita para você</h2>
-      <p class="reveal" style="margin-top:22px">Preencha ao lado e Carlos Santos entra em contato direto pelo WhatsApp com as melhores opções para o seu perfil. Sem custo, sem burocracia.</p>
-      <div class="proof-list">
-        <div class="proof-item reveal delay-1">
-          <div class="proof-icon">⚡</div>
-          <div class="proof-text"><strong>Resposta em até 1 hora</strong><br>Carlos responde pessoalmente durante o horário comercial.</div>
-        </div>
-        <div class="proof-item reveal delay-2">
-          <div class="proof-icon">🏆</div>
-          <div class="proof-text"><strong>Condições exclusivas</strong><br>Como corretor parceiro, Carlos acessa ofertas que não estão nos sites das construtoras.</div>
-        </div>
-        <div class="proof-item reveal delay-3">
-          <div class="proof-icon">🔒</div>
-          <div class="proof-text"><strong>Seus dados são seguros</strong><br>Suas informações são usadas apenas para o contato solicitado.</div>
+  <div class="form-wrap rv">
+    <div id="fc">
+      <div class="form-ht">Deixe seu <em>contato</em></div>
+      <div class="form-sub">Carlos Santos te chama no WhatsApp com as melhores opções disponíveis.</div>
+
+      <div class="fg">
+        <label class="fl" for="fn">Nome completo *</label>
+        <input class="fi" type="text" id="fn" placeholder="Seu nome" autocomplete="name">
+      </div>
+
+      <div class="fg">
+        <label class="fl" for="ft">WhatsApp *</label>
+        <input class="fi" type="tel" id="ft" placeholder="(11) 99999-9999" autocomplete="tel">
+      </div>
+
+      <div class="fg">
+        <label class="fl" for="fco">Construtora de interesse</label>
+        <div class="sw">
+          <select class="fs" id="fco">
+            <option value="">Todas / Ainda não sei</option>
+            <option value="Econ Construtora">Econ Construtora</option>
+            <option value="MRV Engenharia">MRV Engenharia</option>
+            <option value="Plano & Plano">Plano &amp; Plano</option>
+            <option value="Construtora Tenda">Construtora Tenda</option>
+            <option value="Cury Construtora">Cury Construtora</option>
+          </select>
         </div>
       </div>
+
+      <div class="fg">
+        <label class="fl" for="fti">Tipo de imóvel</label>
+        <div class="sw">
+          <select class="fs" id="fti">
+            <option value="">Indiferente</option>
+            <option value="Studio">Studio / Compacto</option>
+            <option value="Apartamento 2 dorms">Apartamento 2 dorms</option>
+            <option value="Apartamento 3 dorms">Apartamento 3 dorms</option>
+            <option value="Cobertura">Cobertura / Alto padrão</option>
+            <option value="Investimento">Para investimento</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="fg">
+        <label class="fl" for="fm">Observação (opcional)</label>
+        <input class="fi" type="text" id="fm" placeholder="Ex: quero MCMV, preciso de 2 vagas...">
+      </div>
+
+      <div class="fck">
+        <input type="checkbox" id="fac" checked>
+        <label for="fac">Concordo em receber contato de Carlos Santos pelo WhatsApp.</label>
+      </div>
+
+      <button class="btn-send" onclick="enviar()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Enviar pelo WhatsApp
+      </button>
     </div>
 
-    <div class="leads-form reveal-right">
-      <div id="form-content">
-        <div class="form-title">Deixe seu <em>contato</em></div>
-        <div class="form-sub">Carlos Santos te chama no WhatsApp com as melhores opções disponíveis.</div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" for="f-nome">Nome completo *</label>
-            <input class="form-input" type="text" id="f-nome" placeholder="Seu nome" autocomplete="name">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f-tel">WhatsApp *</label>
-            <input class="form-input" type="tel" id="f-tel" placeholder="(11) 99999-9999" autocomplete="tel">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="f-const">Construtora de interesse</label>
-          <div class="select-wrap">
-            <select class="form-select" id="f-const">
-              <option value="">Todas / Ainda não sei</option>
-              <option value="Econ Construtora">Econ Construtora</option>
-              <option value="MRV Engenharia">MRV Engenharia</option>
-              <option value="Plano & Plano">Plano &amp; Plano</option>
-              <option value="Construtora Tenda">Construtora Tenda</option>
-              <option value="Cury Construtora">Cury Construtora</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="f-tipo">Tipo de imóvel</label>
-          <div class="select-wrap">
-            <select class="form-select" id="f-tipo">
-              <option value="">Indiferente</option>
-              <option value="Studio">Studio / Compacto</option>
-              <option value="Apartamento 2 dorms">Apartamento 2 dormitórios</option>
-              <option value="Apartamento 3 dorms">Apartamento 3 dormitórios</option>
-              <option value="Cobertura">Cobertura / Alto padrão</option>
-              <option value="Investimento">Para investimento / locação</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="f-msg">Mensagem (opcional)</label>
-          <input class="form-input" type="text" id="f-msg" placeholder="Ex: quero MCMV, 2 vagas, etc.">
-        </div>
-        <div class="form-check">
-          <input type="checkbox" id="f-aceite" checked>
-          <label for="f-aceite">Concordo em receber contato de Carlos Santos pelo WhatsApp com informações sobre imóveis.</label>
-        </div>
-        <button class="btn-submit" onclick="enviarLead()">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Enviar pelo WhatsApp
-        </button>
-      </div>
-      <div class="form-success" id="form-success">
-        <div class="success-icon">✅</div>
-        <div class="success-title">Mensagem <em>enviada!</em></div>
-        <div class="success-sub">
-          Uma janela do WhatsApp foi aberta com sua mensagem para Carlos Santos.<br><br>
-          Não abriu? <a href="https://wa.me/5511940820563" target="_blank">Clique aqui</a>.
-        </div>
+    <div class="form-ok" id="fok">
+      <div class="form-ok-ico">✅</div>
+      <div class="form-ok-title">Mensagem <em>enviada!</em></div>
+      <div class="form-ok-sub">
+        O WhatsApp foi aberto com sua mensagem para Carlos.<br><br>
+        <!-- ── EDIT: link de fallback WhatsApp ── -->
+        Não abriu? <a href="https://wa.me/5511940820563" target="_blank">Clique aqui</a>.
       </div>
     </div>
   </div>
 </section>
 
 <!-- ══ CTA FINAL ══ -->
-<section class="cta-final">
-  <p class="s-eyebrow reveal">Oportunidades Exclusivas</p>
-  <h2 class="s-title reveal">Receba os melhores<br><em>lançamentos</em> em primeira mão.</h2>
-  <p class="cta-final-sub reveal">Seja o primeiro a saber sobre novos empreendimentos. Condições especiais de pré-lançamento disponíveis apenas pelo Carlos Santos.</p>
-  <div class="cta-final-btns reveal">
-    <a class="btn-wa" href="https://wa.me/5511940820563?text=Olá%20Carlos%2C%20quero%20receber%20informações%20sobre%20lançamentos!" target="_blank">
+<section class="cta">
+  <p class="cta-tag rv">Não perca o lançamento</p>
+  <!-- ── EDIT: título CTA final ── -->
+  <h2 class="cta-title rv">Fale agora com<br><em>Carlos Santos</em></h2>
+  <p class="cta-sub rv">Condições especiais disponíveis apenas para quem entra em contato direto com o corretor.</p>
+  <div class="cta-btns rv">
+    <!-- ── EDIT: WhatsApp CTA final ── -->
+    <a class="btn-wa" href="https://wa.me/5511940820563?text=Olá%20Carlos%2C%20quero%20ver%20lançamentos!" target="_blank">
       <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       WhatsApp Agora
     </a>
-    <a class="btn-outline-white" href="tel:+5511940820563">📞 (11) 94082-0563</a>
+    <!-- ── EDIT: telefone ── -->
+    <a class="btn-tel" href="tel:+5511940820563">📞 (11) 94082-0563</a>
   </div>
 </section>
 
 <!-- ══ FOOTER ══ -->
 <footer>
-  <div class="footer-brand">Carlos Santos Imóveis</div>
-  <div class="footer-info">
-    CRECI-SP 245180-F · © 2025 Carlos Santos · Todos os direitos reservados<br>
-    (11) 94082-0563 · São Paulo, SP
-  </div>
+  <div class="footer-name">Carlos Santos Imóveis</div>
+  <!-- ── EDIT: info footer ── -->
+  <div class="footer-info">CRECI-SP 245180-F · © 2025 Carlos Santos · São Paulo, SP</div>
 </footer>
 
-<script src="js/script.js"></script>
+<script>
+/* navbar scroll */
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* scroll reveal */
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('on'), i * 60);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+/* máscara telefone */
+document.getElementById('ft').addEventListener('input', function () {
+  let v = this.value.replace(/\D/g, '');
+  if (v.length > 11) v = v.slice(0, 11);
+  if (v.length > 7)      v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+  else if (v.length > 2) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+  else if (v.length > 0) v = `(${v}`;
+  this.value = v;
+});
+
+/* pré-preenche construtora */
+function preencher(nome) {
+  setTimeout(() => {
+    document.getElementById('fco').value = nome;
+    document.getElementById('contato').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 80);
+}
+
+/* enviar lead */
+function enviar() {
+  const nome = document.getElementById('fn').value.trim();
+  const tel  = document.getElementById('ft').value.trim();
+  const con  = document.getElementById('fco').value || 'Não informado';
+  const tip  = document.getElementById('fti').value || 'Indiferente';
+  const msg  = document.getElementById('fm').value.trim();
+  const ace  = document.getElementById('fac').checked;
+
+  if (!nome) { alert('Por favor, informe seu nome.'); return; }
+  if (!tel || tel.replace(/\D/g,'').length < 10) { alert('Por favor, informe um WhatsApp válido.'); return; }
+  if (!ace)  { alert('É necessário aceitar o contato para continuar.'); return; }
+
+  /* ── EDIT: número WhatsApp do corretor ── */
+  const wa = '5511940820563';
+
+  const txt =
+    `🏠 *Novo Lead — Carlos Santos Imóveis*\n\n` +
+    `👤 *Nome:* ${nome}\n` +
+    `📱 *WhatsApp:* ${tel}\n` +
+    `🏗️ *Construtora:* ${con}\n` +
+    `🏡 *Tipo:* ${tip}` +
+    (msg ? `\n💬 *Obs:* ${msg}` : '') +
+    `\n\n_Portal Carlos Santos Imóveis_`;
+
+  window.open(`https://wa.me/${wa}?text=${encodeURIComponent(txt)}`, '_blank');
+  document.getElementById('fc').style.display = 'none';
+  document.getElementById('fok').classList.add('show');
+}
+</script>
+
 </body>
 </html>
